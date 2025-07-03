@@ -3,6 +3,35 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, setDoc, onSnapshot, collection, addDoc, query, orderBy, serverTimestamp } from 'firebase/firestore';
 
+// Função auxiliar para determinar a cor do texto de contraste (preto ou branco)
+// Esta função não será usada para os cartões agora, pois o texto será forçado a branco.
+// No entanto, é mantida caso seja útil para outras partes do aplicativo ou futuras alterações.
+const getContrastTextColor = (hexColor) => {
+    if (!hexColor) return '#000000'; // Padrão para preto se não houver cor
+
+    // Remove # se presente
+    const cleanHex = hexColor.startsWith('#') ? hexColor.slice(1) : hexColor;
+
+    // Se o hex não tiver 6 caracteres, retorna um padrão e avisa
+    if (cleanHex.length !== 6) {
+        console.warn('Cor hexadecimal inválida para verificação de contraste:', hexColor);
+        return '#000000'; // Padrão para preto para hex inválido
+    }
+
+    // Converte hex para RGB
+    const r = parseInt(cleanHex.substring(0, 2), 16);
+    const g = parseInt(cleanHex.substring(2, 4), 16);
+    const b = parseInt(cleanHex.substring(4, 6), 16);
+
+    // Calcula a luminância (brilho percebido) usando a fórmula YIQ
+    // Fórmula: (R*0.299 + G*0.587 + B*0.114) / 255
+    const luminance = (r * 299 + g * 587 + b * 114) / 1000;
+
+    // Retorna texto preto para cores claras, branco para cores escuras
+    return luminance > 186 ? '#000000' : '#ffffff'; // 186 é um limiar comum
+};
+
+
 // Componente principal da aplicação
 const App = () => {
     // Estados para Firebase
@@ -443,7 +472,7 @@ const App = () => {
     const cardTemplates = [
         { name: "Padrão", text: "", bgColor: "#ffffff" },
         { name: "Galo Doido", text: "Parabéns! Que a paixão pelo Galo te inspire sempre!", bgColor: "#fcd34d" }, // Amarelo do Galo
-        { name: "Manto Sagrado", text: "Feliz Aniversário! Que a glória alvinegra esteja sempre com você!", bgColor: "#000000", textColor: "#ffffff" },
+        { name: "Manto Sagrado", text: "Feliz Aniversário! Que a glória alvinegra esteja sempre com você!", bgColor: "#000000" },
         { name: "Campo", text: "Que sua vida seja um campo de vitórias! Feliz Aniversário!", bgColor: "#34d399" } // Verde
     ];
 
@@ -743,7 +772,7 @@ const App = () => {
                                             key={index}
                                             onClick={() => applyCardTemplate(template)}
                                             className="px-4 py-2 rounded-full text-sm font-semibold shadow-md transition duration-300"
-                                            style={{ backgroundColor: template.bgColor, color: template.textColor || (template.bgColor === '#000000' ? '#ffffff' : '#000000'), border: '1px solid #ccc' }}
+                                            style={{ backgroundColor: template.bgColor, color: '#ffffff', border: '1px solid #ccc' }} // Força texto branco
                                         >
                                             {template.name}
                                         </button>
@@ -765,7 +794,7 @@ const App = () => {
                                         cards.map((card) => (
                                             <div key={card.id}
                                                 className="border border-gray-200 rounded-lg p-4 flex flex-col items-center justify-center text-center shadow-sm"
-                                                style={{ backgroundColor: card.bgColor, minHeight: '150px', color: card.bgColor === '#000000' ? '#ffffff' : '#000000' }}
+                                                style={{ backgroundColor: card.bgColor, minHeight: '150px', color: '#ffffff' }} // Força texto branco
                                             >
                                                 <p className="font-medium">{card.text}</p>
                                                 <p className="text-xs text-gray-500 mt-2">Salvo em: {new Date(card.createdAt?.toDate()).toLocaleString()}</p>
@@ -918,7 +947,10 @@ const App = () => {
             <header className="bg-gradient-to-r from-black to-gray-900 text-white p-4 shadow-lg flex flex-col sm:flex-row items-center justify-between">
                 <div className="flex items-center mb-4 sm:mb-0">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Escudo_do_Clube_Atl%C3%A9tico_Mineiro.svg/1200px-Escudo_do_Clube_Atl%C3%A9tico_Mineiro.svg.png" alt="Escudo Atlético-MG" className="h-12 w-12 mr-3 rounded-full border-2 border-white" />
-                    <h1 className="text-3xl font-extrabold tracking-wide">Dr. Emanuel's Wonderland</h1>
+                    <div>
+                        <h1 className="text-3xl font-extrabold tracking-wide">Dr. Emanuel's Wonderland</h1>
+                        {userId && <p className="text-xs text-gray-400">ID do Usuário: {userId}</p>}
+                    </div>
                 </div>
                 <nav className="flex flex-wrap justify-center gap-3">
                     <button onClick={() => setCurrentPage('home')} className="nav-button">Início</button>
