@@ -4,7 +4,7 @@ import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged }
 import { getFirestore, doc, setDoc, onSnapshot, collection, addDoc, query, orderBy, serverTimestamp } from 'firebase/firestore';
 
 // Função auxiliar para determinar a cor do texto de contraste (preto ou branco)
-// Esta função não será usada para os cartões agora, pois o texto será forçado a branco.
+// Esta função não será usada para os cartões agora, pois o texto será forçado a preto.
 // No entanto, é mantida caso seja útil para outras partes do aplicativo ou futuras alterações.
 const getContrastTextColor = (hexColor) => {
     if (!hexColor) return '#000000'; // Padrão para preto se não houver cor
@@ -79,17 +79,29 @@ const App = () => {
     useEffect(() => {
         try {
             const firebaseConfig = {};
-            // Tenta usar as variáveis globais do ambiente Canvas
-            if (typeof __firebase_config !== 'undefined') {
-                Object.assign(firebaseConfig, JSON.parse(__firebase_config));
+            let initialAuthToken = undefined;
+            let currentAppId = 'default-app-id';
+
+            // Verifica se está no ambiente de navegador (Canvas)
+            if (typeof window !== 'undefined') {
+                if (typeof __firebase_config !== 'undefined') {
+                    Object.assign(firebaseConfig, JSON.parse(__firebase_config));
+                }
+                if (typeof __initial_auth_token !== 'undefined') {
+                    initialAuthToken = __initial_auth_token;
+                }
+                if (typeof __app_id !== 'undefined') {
+                    currentAppId = __app_id;
+                }
             } else if (typeof process !== 'undefined' && process.env.REACT_APP_FIREBASE_API_KEY) {
-                // Se não estiver no Canvas, tenta usar variáveis de ambiente do processo (para Vercel, etc.)
+                // Se não estiver no navegador, tenta usar variáveis de ambiente do processo (para Vercel, etc.)
                 firebaseConfig.apiKey = process.env.REACT_APP_FIREBASE_API_KEY;
                 firebaseConfig.authDomain = process.env.REACT_APP_FIREBASE_AUTH_DOMAIN;
                 firebaseConfig.projectId = process.env.REACT_APP_FIREBASE_PROJECT_ID;
                 firebaseConfig.storageBucket = process.env.REACT_APP_FIREBASE_STORAGE_BUCKET;
                 firebaseConfig.messagingSenderId = process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID;
                 firebaseConfig.appId = process.env.REACT_APP_FIREBASE_APP_ID;
+                currentAppId = process.env.REACT_APP_FIREBASE_APP_ID || 'default-app-id';
             } else {
                 console.error("Firebase config is missing. Please set environment variables or provide __firebase_config.");
                 showAppMessage("Erro: Configuração do Firebase ausente. O aplicativo pode não funcionar corretamente.");
@@ -115,9 +127,9 @@ const App = () => {
                 if (user) {
                     setUserId(user.uid);
                 } else {
-                    // Tenta usar o token inicial do Canvas, se disponível
-                    if (typeof __initial_auth_token !== 'undefined') {
-                        await signInWithCustomToken(firebaseAuth, __initial_auth_token);
+                    // Tenta usar o token inicial, se disponível
+                    if (initialAuthToken) {
+                        await signInWithCustomToken(firebaseAuth, initialAuthToken);
                     } else {
                         // Caso contrário, faz login anonimamente
                         await signInAnonymously(firebaseAuth);
@@ -772,7 +784,7 @@ const App = () => {
                                             key={index}
                                             onClick={() => applyCardTemplate(template)}
                                             className="px-4 py-2 rounded-full text-sm font-semibold shadow-md transition duration-300"
-                                            style={{ backgroundColor: template.bgColor, color: '#ffffff', border: '1px solid #ccc' }} // Força texto branco
+                                            style={{ backgroundColor: template.bgColor, color: '#000000', border: '1px solid #ccc' }} // Força texto preto
                                         >
                                             {template.name}
                                         </button>
@@ -794,7 +806,7 @@ const App = () => {
                                         cards.map((card) => (
                                             <div key={card.id}
                                                 className="border border-gray-200 rounded-lg p-4 flex flex-col items-center justify-center text-center shadow-sm"
-                                                style={{ backgroundColor: card.bgColor, minHeight: '150px', color: '#ffffff' }} // Força texto branco
+                                                style={{ backgroundColor: card.bgColor, minHeight: '150px', color: '#000000' }} // Força texto preto
                                             >
                                                 <p className="font-medium">{card.text}</p>
                                                 <p className="text-xs text-gray-500 mt-2">Salvo em: {new Date(card.createdAt?.toDate()).toLocaleString()}</p>
