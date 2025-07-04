@@ -288,57 +288,57 @@ const App = () => {
     const players = [
         {
             name: "Hulk",
-            <img src = "https://br.pinterest.com/pin/160088961748426341/"/>
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Hulk_-_Atl%C3%A9tico-MG_%28cropped%29.jpg/220px-Hulk_-_Atl%C3%A9tico-MG_%28cropped%29.jpg",
             message: "Parabéns, Dr. Emanuel! Que sua força e paixão sejam tão grandes quanto as minhas em campo. Não há limites para quem acredita e batalha pelos seus sonhos. Siga em frente com determinação!"
-        }            
+        },
         {
             name: "Rubens",
-            <img src = "https://br.pinterest.com/pin/160088961748144971/"/>
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Rubens_-_Atl%C3%A9tico-MG.jpg/220px-Rubens_-_Atl%C3%A9tico-MG.jpg",
             message: "Feliz aniversário, Dr. Emanuel! Que a sua juventude e energia te impulsionem a conquistar cada vez mais. O futuro é seu, acredite e vá em frente!"
-        }
+        },
         {
             name: "Everson",
-            <img src = "https://br.pinterest.com/pin/71072500369030035/"/>
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Everson_-_Atl%C3%A9tico-MG.jpg/220px-Everson_-_Atl%C3%A9tico-MG.jpg",
             message: "Parabéns, Dr. Emanuel! Que a sua segurança e a sua capacidade de defender seus ideais sejam sempre inabaláveis, assim como minhas defesas. Mantenha o foco!"
-        }
+        },
         {
             name: "Rony",
-            <img src= "https://br.pinterest.com/pin/130815564173584482/"/>
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Rony_-_Palmeiras.jpg/220px-Rony_-_Palmeiras.jpg", // Imagem do Rony do Palmeiras, pois não encontrei do Galo facilmente. Pode ser substituída.
             message: "Feliz aniversário, Dr. Emanuel! Que a sua velocidade e agilidade para superar desafios te levem a grandes vitórias. Corra atrás dos seus sonhos!"
-        }
+        },
         {
             name: "Lyanco",
-            <img src = "https://br.pinterest.com/pin/160088961749571397/"/>
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Lyanco_Vojnovic_2023.jpg/220px-Lyanco_Vojnovic_2023.jpg",
             message: "Parabéns, Dr. Emanuel! Que a sua solidez e determinação sejam a base para todas as suas conquistas. Construa um futuro brilhante!"
-        }
+        },
         {
             name: "Júlia Ayla",
-            <img src = "https://placehold.co/100x100/FFC0CB/000000?text=Júlia+Ayla"/> // Cor de rosa para a princesa
+            image: "https://i.imgur.com/your-julia-ayla-image.jpg", // Substitua por uma URL real da imagem da Júlia Ayla
             message: "Eu te amo muito, meu amor!"
-        }
+        },
         {
             name: "Scarpa",
-            <img src = "https://br.pinterest.com/pin/123708321008585750/"/>
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Gustavo_Scarpa_-_Atl%C3%A9tico-MG.jpg/220px-Gustavo_Scarpa_-_Atl%C3%A9tico-MG.jpg",
             message: "Feliz aniversário, Dr. Emanuel! Que a sua criatividade e o seu talento para inovar te abram muitos caminhos. Ouse sonhar grande!"
-        }
+        },
         {
             name: "Saraiva",
-            <img src = "https://br.pinterest.com/pin/672162313169767071/"/>
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Alan_Franco_-_Atl%C3%A9tico-MG.jpg/220px-Alan_Franco_-_Atl%C3%A9tico-MG.jpg", // Imagem do Alan Franco, pois não encontrei do Saraiva facilmente. Pode ser substituída.
             message: "Parabéns, Dr. Emanuel! Que a sua visão de jogo e a sua capacidade de criar oportunidades te guiem para o sucesso. Enxergue além!"
-        }
+        },
         {
             name: "Paulinho",
-            <img src = "https://br.pinterest.com/pin/576953402295946262/"/>
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Paulinho_-_Atl%C3%A9tico-MG.jpg/220px-Paulinho_-_Atl%C3%A9tico-MG.jpg",
             message: "Feliz aniversário, Dr. Emanuel! Que a sua estrela brilhe cada vez mais, e que você continue marcando gols na vida. Siga seu caminho com luz!"
-        }
+        },
         {
             name: "Zaracho",
-            <img src = "https://br.pinterest.com/pin/465137467781079911/"/>
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Mat%C3%ADas_Zaracho_-_Atl%C3%A9tico-MG.jpg/220px-Mat%C3%ADas_Zaracho_-_Atl%C3%A9tico-MG.jpg",
             message: "Parabéns, Dr. Emanuel! Que a sua versatilidade e a sua paixão pelo que faz te levem a alcançar todos os seus objetivos. Seja completo!"
-        }
+        },
         {
             name: "Deyverson",
-            <img src = "https://br.pinterest.com/pin/465137467783694997/"/>
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Deyverson_-_Cuiab%C3%A1.jpg/220px-Deyverson_-_Cuiab%C3%A1.jpg", // Imagem do Deyverson do Cuiabá, pois não encontrei do Galo facilmente. Pode ser substituída.
             message: "Feliz aniversário, Dr. Emanuel! Que a sua alegria e o seu espírito guerreiro te inspirem a celebrar cada momento e a lutar por cada vitória. Viva intensamente!"
         }
     ];
@@ -958,7 +958,7 @@ const App = () => {
             {/* Cabeçalho */}
             <header className="bg-gradient-to-r from-black to-gray-900 text-white p-4 shadow-lg flex flex-col sm:flex-row items-center justify-between">
                 <div className="flex items-center mb-4 sm:mb-0">
-                    <img src="https://br.pinterest.com/pin/29625310043047802/" alt="Escudo Atlético-MG" className="h-12 w-12 mr-3 rounded-full border-2 border-white" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Escudo_do_Clube_Atl%C3%A9tico_Mineiro.svg/1200px-Escudo_do_Clube_Atl%C3%A9tico_Mineiro.svg.png" alt="Escudo Atlético-MG" className="h-12 w-12 mr-3 rounded-full border-2 border-white" />
                     <div>
                         <h1 className="text-3xl font-extrabold tracking-wide">Dr. Emanuel's Wonderland</h1>
                         {userId && <p className="text-xs text-gray-400">ID do Usuário: {userId}</p>}
