@@ -288,57 +288,57 @@ const App = () => {
     const players = [
         {
             name: "Hulk",
-            image: "https://br.pinterest.com/pin/160088961748426341/",
+            <img src = "https://br.pinterest.com/pin/160088961748426341/"/>
             message: "Parabéns, Dr. Emanuel! Que sua força e paixão sejam tão grandes quanto as minhas em campo. Não há limites para quem acredita e batalha pelos seus sonhos. Siga em frente com determinação!"
-        },
+        }            
         {
             name: "Rubens",
-            image: "https://br.pinterest.com/pin/160088961748144971/",
+            <img src = "https://br.pinterest.com/pin/160088961748144971/"/>
             message: "Feliz aniversário, Dr. Emanuel! Que a sua juventude e energia te impulsionem a conquistar cada vez mais. O futuro é seu, acredite e vá em frente!"
-        },
+        }
         {
             name: "Everson",
-            image: "https://br.pinterest.com/pin/71072500369030035/",
+            <img src = "https://br.pinterest.com/pin/71072500369030035/"/>
             message: "Parabéns, Dr. Emanuel! Que a sua segurança e a sua capacidade de defender seus ideais sejam sempre inabaláveis, assim como minhas defesas. Mantenha o foco!"
-        },
+        }
         {
             name: "Rony",
-            image: "https://br.pinterest.com/pin/130815564173584482/",
+            <img src= "https://br.pinterest.com/pin/130815564173584482/"/>
             message: "Feliz aniversário, Dr. Emanuel! Que a sua velocidade e agilidade para superar desafios te levem a grandes vitórias. Corra atrás dos seus sonhos!"
-        },
+        }
         {
             name: "Lyanco",
-            image: "https://br.pinterest.com/pin/160088961749571397/",
+            <img src = "https://br.pinterest.com/pin/160088961749571397/"/>
             message: "Parabéns, Dr. Emanuel! Que a sua solidez e determinação sejam a base para todas as suas conquistas. Construa um futuro brilhante!"
-        },
+        }
         {
             name: "Júlia Ayla",
-            image: "https://placehold.co/100x100/FFC0CB/000000?text=Júlia+Ayla", // Cor de rosa para a princesa
+            <img src = "https://placehold.co/100x100/FFC0CB/000000?text=Júlia+Ayla"/> // Cor de rosa para a princesa
             message: "Eu te amo muito, meu amor!"
-        },
+        }
         {
             name: "Scarpa",
-            image: "https://br.pinterest.com/pin/123708321008585750/",
+            <img src = "https://br.pinterest.com/pin/123708321008585750/"/>
             message: "Feliz aniversário, Dr. Emanuel! Que a sua criatividade e o seu talento para inovar te abram muitos caminhos. Ouse sonhar grande!"
-        },
+        }
         {
             name: "Saraiva",
-            image: "https://br.pinterest.com/pin/672162313169767071/",
+            <img src = "https://br.pinterest.com/pin/672162313169767071/"/>
             message: "Parabéns, Dr. Emanuel! Que a sua visão de jogo e a sua capacidade de criar oportunidades te guiem para o sucesso. Enxergue além!"
-        },
+        }
         {
             name: "Paulinho",
-            image: "https://br.pinterest.com/pin/576953402295946262/",
+            <img src = "https://br.pinterest.com/pin/576953402295946262/"/>
             message: "Feliz aniversário, Dr. Emanuel! Que a sua estrela brilhe cada vez mais, e que você continue marcando gols na vida. Siga seu caminho com luz!"
-        },
+        }
         {
             name: "Zaracho",
-            image: "https://br.pinterest.com/pin/465137467781079911/",
+            <img src = "https://br.pinterest.com/pin/465137467781079911/"/>
             message: "Parabéns, Dr. Emanuel! Que a sua versatilidade e a sua paixão pelo que faz te levem a alcançar todos os seus objetivos. Seja completo!"
-        },
+        }
         {
             name: "Deyverson",
-            image: "https://br.pinterest.com/pin/465137467783694997/",
+            <img src = "https://br.pinterest.com/pin/465137467783694997/"/>
             message: "Feliz aniversário, Dr. Emanuel! Que a sua alegria e o seu espírito guerreiro te inspirem a celebrar cada momento e a lutar por cada vitória. Viva intensamente!"
         }
     ];
