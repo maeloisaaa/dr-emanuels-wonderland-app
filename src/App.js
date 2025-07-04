@@ -631,12 +631,12 @@ const App = () => {
                             {players.map((player, index) => (
                                 <div
                                     key={index}
-                                    className="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center cursor-pointer transform hover:scale-105 transition duration-300 border-2 border-gray-200 hover:border-black"
+                                    className="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center cursor-pointer transform hover:scale-105 transition duration-300 border-2 border-gray-200 hover:border-black min-h-[150px]"
                                     onClick={() => openPlayerModal(player)}
                                 >
-                                    <img src={player.image} alt={player.name} className="w-24 h-24 rounded-full mb-3 object-cover border-4 border-gray-300" />
-                                    <p className="text-lg font-semibold text-gray-800">{player.name}</p>
-                                    <span className="text-sm text-gray-500 mt-1">Clique para mensagem</span>
+                                    {/* Removida a tag <img> para exibir apenas o nome */}
+                                    <p className="text-xl font-extrabold text-gray-800 mb-2">{player.name}</p>
+                                    <span className="text-sm text-gray-500">Clique para mensagem</span>
                                 </div>
                             ))}
                         </div>
