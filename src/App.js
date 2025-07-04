@@ -4,7 +4,7 @@ import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged }
 import { getFirestore, doc, setDoc, onSnapshot, collection, addDoc, query, orderBy, serverTimestamp } from 'firebase/firestore';
 
 // Função auxiliar para determinar a cor do texto de contraste (preto ou branco)
-// Esta função não será usada para os cartões agora, pois o texto será forçado a preto.
+// Esta função não será usada para os cartões agora, pois o texto será forçado a branco.
 // No entanto, é mantida caso seja útil para outras partes do aplicativo ou futuras alterações.
 const getContrastTextColor = (hexColor) => {
     if (!hexColor) return '#000000'; // Padrão para preto se não houver cor
@@ -79,29 +79,17 @@ const App = () => {
     useEffect(() => {
         try {
             const firebaseConfig = {};
-            let initialAuthToken = undefined;
-            let currentAppId = 'default-app-id';
-
-            // Verifica se está no ambiente de navegador (Canvas)
-            if (typeof window !== 'undefined') {
-                if (typeof __firebase_config !== 'undefined') {
-                    Object.assign(firebaseConfig, JSON.parse(__firebase_config));
-                }
-                if (typeof __initial_auth_token !== 'undefined') {
-                    initialAuthToken = __initial_auth_token;
-                }
-                if (typeof __app_id !== 'undefined') {
-                    currentAppId = __app_id;
-                }
+            // Tenta usar as variáveis globais do ambiente Canvas
+            if (typeof __firebase_config !== 'undefined') {
+                Object.assign(firebaseConfig, JSON.parse(__firebase_config));
             } else if (typeof process !== 'undefined' && process.env.REACT_APP_FIREBASE_API_KEY) {
-                // Se não estiver no navegador, tenta usar variáveis de ambiente do processo (para Vercel, etc.)
+                // Se não estiver no Canvas, tenta usar variáveis de ambiente do processo (para Vercel, etc.)
                 firebaseConfig.apiKey = process.env.REACT_APP_FIREBASE_API_KEY;
                 firebaseConfig.authDomain = process.env.REACT_APP_FIREBASE_AUTH_DOMAIN;
                 firebaseConfig.projectId = process.env.REACT_APP_FIREBASE_PROJECT_ID;
                 firebaseConfig.storageBucket = process.env.REACT_APP_FIREBASE_STORAGE_BUCKET;
                 firebaseConfig.messagingSenderId = process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID;
                 firebaseConfig.appId = process.env.REACT_APP_FIREBASE_APP_ID;
-                currentAppId = process.env.REACT_APP_FIREBASE_APP_ID || 'default-app-id';
             } else {
                 console.error("Firebase config is missing. Please set environment variables or provide __firebase_config.");
                 showAppMessage("Erro: Configuração do Firebase ausente. O aplicativo pode não funcionar corretamente.");
@@ -127,9 +115,9 @@ const App = () => {
                 if (user) {
                     setUserId(user.uid);
                 } else {
-                    // Tenta usar o token inicial, se disponível
-                    if (initialAuthToken) {
-                        await signInWithCustomToken(firebaseAuth, initialAuthToken);
+                    // Tenta usar o token inicial do Canvas, se disponível
+                    if (typeof __initial_auth_token !== 'undefined') {
+                        await signInWithCustomToken(firebaseAuth, __initial_auth_token);
                     } else {
                         // Caso contrário, faz login anonimamente
                         await signInAnonymously(firebaseAuth);
@@ -288,57 +276,57 @@ const App = () => {
     const players = [
         {
             name: "Hulk",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Hulk_-_Atl%C3%A9tico-MG_%28cropped%29.jpg/220px-Hulk_-_Atl%C3%A9tico-MG_%28cropped%29.jpg",
+            image: "https://placehold.co/100x100/000000/FFFFFF?text=Hulk",
             message: "Parabéns, Dr. Emanuel! Que sua força e paixão sejam tão grandes quanto as minhas em campo. Não há limites para quem acredita e batalha pelos seus sonhos. Siga em frente com determinação!"
         },
         {
             name: "Rubens",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Rubens_-_Atl%C3%A9tico-MG.jpg/220px-Rubens_-_Atl%C3%A9tico-MG.jpg",
+            image: "https://placehold.co/100x100/000000/FFFFFF?text=Rubens",
             message: "Feliz aniversário, Dr. Emanuel! Que a sua juventude e energia te impulsionem a conquistar cada vez mais. O futuro é seu, acredite e vá em frente!"
         },
         {
             name: "Everson",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Everson_-_Atl%C3%A9tico-MG.jpg/220px-Everson_-_Atl%C3%A9tico-MG.jpg",
+            image: "https://placehold.co/100x100/000000/FFFFFF?text=Everson",
             message: "Parabéns, Dr. Emanuel! Que a sua segurança e a sua capacidade de defender seus ideais sejam sempre inabaláveis, assim como minhas defesas. Mantenha o foco!"
         },
         {
             name: "Rony",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Rony_-_Palmeiras.jpg/220px-Rony_-_Palmeiras.jpg", // Imagem do Rony do Palmeiras, pois não encontrei do Galo facilmente. Pode ser substituída.
+            image: "https://placehold.co/100x100/000000/FFFFFF?text=Rony",
             message: "Feliz aniversário, Dr. Emanuel! Que a sua velocidade e agilidade para superar desafios te levem a grandes vitórias. Corra atrás dos seus sonhos!"
         },
         {
             name: "Lyanco",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Lyanco_Vojnovic_2023.jpg/220px-Lyanco_Vojnovic_2023.jpg",
+            image: "https://placehold.co/100x100/000000/FFFFFF?text=Lyanco",
             message: "Parabéns, Dr. Emanuel! Que a sua solidez e determinação sejam a base para todas as suas conquistas. Construa um futuro brilhante!"
         },
         {
             name: "Júlia Ayla",
-            image: "https://i.imgur.com/your-julia-ayla-image.jpg", // Substitua por uma URL real da imagem da Júlia Ayla
+            image: "https://placehold.co/100x100/FFC0CB/000000?text=Júlia+Ayla", // Cor de rosa para a princesa
             message: "Eu te amo muito, meu amor!"
         },
         {
             name: "Scarpa",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Gustavo_Scarpa_-_Atl%C3%A9tico-MG.jpg/220px-Gustavo_Scarpa_-_Atl%C3%A9tico-MG.jpg",
+            image: "https://placehold.co/100x100/000000/FFFFFF?text=Scarpa",
             message: "Feliz aniversário, Dr. Emanuel! Que a sua criatividade e o seu talento para inovar te abram muitos caminhos. Ouse sonhar grande!"
         },
         {
             name: "Saraiva",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Alan_Franco_-_Atl%C3%A9tico-MG.jpg/220px-Alan_Franco_-_Atl%C3%A9tico-MG.jpg", // Imagem do Alan Franco, pois não encontrei do Saraiva facilmente. Pode ser substituída.
+            image: "https://placehold.co/100x100/000000/FFFFFF?text=Saraiva",
             message: "Parabéns, Dr. Emanuel! Que a sua visão de jogo e a sua capacidade de criar oportunidades te guiem para o sucesso. Enxergue além!"
         },
         {
             name: "Paulinho",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Paulinho_-_Atl%C3%A9tico-MG.jpg/220px-Paulinho_-_Atl%C3%A9tico-MG.jpg",
+            image: "https://placehold.co/100x100/000000/FFFFFF?text=Paulinho",
             message: "Feliz aniversário, Dr. Emanuel! Que a sua estrela brilhe cada vez mais, e que você continue marcando gols na vida. Siga seu caminho com luz!"
         },
         {
             name: "Zaracho",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Mat%C3%ADas_Zaracho_-_Atl%C3%A9tico-MG.jpg/220px-Mat%C3%ADas_Zaracho_-_Atl%C3%A9tico-MG.jpg",
+            image: "https://placehold.co/100x100/000000/FFFFFF?text=Zaracho",
             message: "Parabéns, Dr. Emanuel! Que a sua versatilidade e a sua paixão pelo que faz te levem a alcançar todos os seus objetivos. Seja completo!"
         },
         {
             name: "Deyverson",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Deyverson_-_Cuiab%C3%A1.jpg/220px-Deyverson_-_Cuiab%C3%A1.jpg", // Imagem do Deyverson do Cuiabá, pois não encontrei do Galo facilmente. Pode ser substituída.
+            image: "https://placehold.co/100x100/000000/FFFFFF?text=Deyverson",
             message: "Feliz aniversário, Dr. Emanuel! Que a sua alegria e o seu espírito guerreiro te inspirem a celebrar cada momento e a lutar por cada vitória. Viva intensamente!"
         }
     ];
@@ -631,12 +619,12 @@ const App = () => {
                             {players.map((player, index) => (
                                 <div
                                     key={index}
-                                    className="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-center cursor-pointer transform hover:scale-105 transition duration-300 border-2 border-gray-200 hover:border-black min-h-[150px]"
+                                    className="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center cursor-pointer transform hover:scale-105 transition duration-300 border-2 border-gray-200 hover:border-black"
                                     onClick={() => openPlayerModal(player)}
                                 >
-                                    {/* Removida a tag <img> para exibir apenas o nome */}
-                                    <p className="text-xl font-extrabold text-gray-800 mb-2">{player.name}</p>
-                                    <span className="text-sm text-gray-500">Clique para mensagem</span>
+                                    <img src={player.image} alt={player.name} className="w-24 h-24 rounded-full mb-3 object-cover border-4 border-gray-300" />
+                                    <p className="text-lg font-semibold text-gray-800">{player.name}</p>
+                                    <span className="text-sm text-gray-500 mt-1">Clique para mensagem</span>
                                 </div>
                             ))}
                         </div>
@@ -784,7 +772,7 @@ const App = () => {
                                             key={index}
                                             onClick={() => applyCardTemplate(template)}
                                             className="px-4 py-2 rounded-full text-sm font-semibold shadow-md transition duration-300"
-                                            style={{ backgroundColor: template.bgColor, color: '#000000', border: '1px solid #ccc' }} // Força texto preto
+                                            style={{ backgroundColor: template.bgColor, color: '#ffffff', border: '1px solid #ccc' }} // Força texto branco
                                         >
                                             {template.name}
                                         </button>
@@ -806,7 +794,7 @@ const App = () => {
                                         cards.map((card) => (
                                             <div key={card.id}
                                                 className="border border-gray-200 rounded-lg p-4 flex flex-col items-center justify-center text-center shadow-sm"
-                                                style={{ backgroundColor: card.bgColor, minHeight: '150px', color: '#000000' }} // Força texto preto
+                                                style={{ backgroundColor: card.bgColor, minHeight: '150px', color: '#ffffff' }} // Força texto branco
                                             >
                                                 <p className="font-medium">{card.text}</p>
                                                 <p className="text-xs text-gray-500 mt-2">Salvo em: {new Date(card.createdAt?.toDate()).toLocaleString()}</p>
