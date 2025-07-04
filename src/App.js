@@ -288,27 +288,27 @@ const App = () => {
     const players = [
         {
             name: "Hulk",
-            image: "https://placehold.co/100x100/000000/FFFFFF?text=Hulk",
+            image: "https://br.pinterest.com/pin/160088961748426341/",
             message: "Parabéns, Dr. Emanuel! Que sua força e paixão sejam tão grandes quanto as minhas em campo. Não há limites para quem acredita e batalha pelos seus sonhos. Siga em frente com determinação!"
         },
         {
             name: "Rubens",
-            image: "https://placehold.co/100x100/000000/FFFFFF?text=Rubens",
+            image: "https://br.pinterest.com/pin/160088961748144971/",
             message: "Feliz aniversário, Dr. Emanuel! Que a sua juventude e energia te impulsionem a conquistar cada vez mais. O futuro é seu, acredite e vá em frente!"
         },
         {
             name: "Everson",
-            image: "https://placehold.co/100x100/000000/FFFFFF?text=Everson",
+            image: "https://br.pinterest.com/pin/71072500369030035/",
             message: "Parabéns, Dr. Emanuel! Que a sua segurança e a sua capacidade de defender seus ideais sejam sempre inabaláveis, assim como minhas defesas. Mantenha o foco!"
         },
         {
             name: "Rony",
-            image: "https://placehold.co/100x100/000000/FFFFFF?text=Rony",
+            image: "https://br.pinterest.com/pin/130815564173584482/",
             message: "Feliz aniversário, Dr. Emanuel! Que a sua velocidade e agilidade para superar desafios te levem a grandes vitórias. Corra atrás dos seus sonhos!"
         },
         {
             name: "Lyanco",
-            image: "https://placehold.co/100x100/000000/FFFFFF?text=Lyanco",
+            image: "https://br.pinterest.com/pin/160088961749571397/",
             message: "Parabéns, Dr. Emanuel! Que a sua solidez e determinação sejam a base para todas as suas conquistas. Construa um futuro brilhante!"
         },
         {
@@ -318,27 +318,27 @@ const App = () => {
         },
         {
             name: "Scarpa",
-            image: "https://placehold.co/100x100/000000/FFFFFF?text=Scarpa",
+            image: "https://br.pinterest.com/pin/123708321008585750/",
             message: "Feliz aniversário, Dr. Emanuel! Que a sua criatividade e o seu talento para inovar te abram muitos caminhos. Ouse sonhar grande!"
         },
         {
             name: "Saraiva",
-            image: "https://placehold.co/100x100/000000/FFFFFF?text=Saraiva",
+            image: "https://br.pinterest.com/pin/672162313169767071/",
             message: "Parabéns, Dr. Emanuel! Que a sua visão de jogo e a sua capacidade de criar oportunidades te guiem para o sucesso. Enxergue além!"
         },
         {
             name: "Paulinho",
-            image: "https://placehold.co/100x100/000000/FFFFFF?text=Paulinho",
+            image: "https://br.pinterest.com/pin/576953402295946262/",
             message: "Feliz aniversário, Dr. Emanuel! Que a sua estrela brilhe cada vez mais, e que você continue marcando gols na vida. Siga seu caminho com luz!"
         },
         {
             name: "Zaracho",
-            image: "https://placehold.co/100x100/000000/FFFFFF?text=Zaracho",
+            image: "https://br.pinterest.com/pin/465137467781079911/",
             message: "Parabéns, Dr. Emanuel! Que a sua versatilidade e a sua paixão pelo que faz te levem a alcançar todos os seus objetivos. Seja completo!"
         },
         {
             name: "Deyverson",
-            image: "https://placehold.co/100x100/000000/FFFFFF?text=Deyverson",
+            image: "https://br.pinterest.com/pin/465137467783694997/",
             message: "Feliz aniversário, Dr. Emanuel! Que a sua alegria e o seu espírito guerreiro te inspirem a celebrar cada momento e a lutar por cada vitória. Viva intensamente!"
         }
     ];
@@ -958,7 +958,7 @@ const App = () => {
             {/* Cabeçalho */}
             <header className="bg-gradient-to-r from-black to-gray-900 text-white p-4 shadow-lg flex flex-col sm:flex-row items-center justify-between">
                 <div className="flex items-center mb-4 sm:mb-0">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Escudo_do_Clube_Atl%C3%A9tico_Mineiro.svg/1200px-Escudo_do_Clube_Atl%C3%A9tico_Mineiro.svg.png" alt="Escudo Atlético-MG" className="h-12 w-12 mr-3 rounded-full border-2 border-white" />
+                    <img src="https://br.pinterest.com/pin/29625310043047802/" alt="Escudo Atlético-MG" className="h-12 w-12 mr-3 rounded-full border-2 border-white" />
                     <div>
                         <h1 className="text-3xl font-extrabold tracking-wide">Dr. Emanuel's Wonderland</h1>
                         {userId && <p className="text-xs text-gray-400">ID do Usuário: {userId}</p>}
